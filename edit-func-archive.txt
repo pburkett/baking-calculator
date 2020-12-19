@@ -1,0 +1,55 @@
+def displayFormula(self):
+        try:
+            formulaDisplay = f"{self.name} Formula\n\n"
+
+            for flour in self.flourList:
+                flourDisplayTemplate = flour['flourName'] + \
+                    ': ' + str(flour['flourPercentage']) + '%\n'
+                formulaDisplay += flourDisplayTemplate
+
+            for ingredient in self.ingredientList:
+                ingredientDisplayTemplate = ingredient['ingredientName'] + \
+                    ': ' + str(ingredient['ingredientPercentage']) + '%\n'
+                formulaDisplay += ingredientDisplayTemplate
+
+            print(formulaDisplay)
+        except:
+            print("An error occured while display this formula.")
+
+   
+        for ingredient in self.ingredientList:
+            if userSelction == ingredient['ingredientName']:
+                beingEdited = ingredient['ingredientPercentage']
+
+                userEdit = input("Enter the new percentage of the ingredient:\n>> ")
+                
+                break
+                
+        
+    def editFlours(self):
+
+        userSelction = input(
+                "Input the name of an ingredient to be edited:\n>> ")
+        for flour in self.flourList:
+            if userSelction == flour['flourName']:
+            
+                del self.flourList[:]
+                print(self.flourList)
+                totalFlourPercentage = 0
+                flourCount = 0
+                print("All flour ingredients have been reset. Please ensure the sum of all flour percentages is 100%")
+                while totalFlourPercentage != 100:
+                    flourName = input(
+                        f"Number of flour types: {flourCount}\nEnter flour type.\n>> ")
+                    flourPercentage = float(
+                        input(f"Enter baker's percentage (1-100) of {flourName}\n>> "))
+                    flourDict = {
+                "flourName": flourName,
+                "flourPercentage": flourPercentage
+            }
+                    self.flourList.append(flourDict)
+                    flourCount += 1
+                    totalFlourPercentage += flourPercentage
+
+                self.generateData()
+                break
